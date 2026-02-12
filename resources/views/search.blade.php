@@ -1,0 +1,190 @@
+@extends('layouts.master')
+
+@section('MyContent')
+    <x-slider />
+    <div class="col-12 col-lg-8  ">
+
+
+        @forelse ($movies as $item)
+            <article class="card shadow-sm  border-0">
+                <div class="row p-4">
+                    <!-- تصویر -->
+                    <div class="col-12 col-md-4 mb-3 mb-md-0">
+                        <figure class="image-figure">
+                            <img src="/image/{{ $item->poster }}" alt="" class="image-content w-100 img-fluid">
+                        </figure>
+                    </div>
+
+
+                    <!-- اطلاعات -->
+                    <div class="col-12 col-md-8">
+                        <div class="mb-4">
+                            <h6>
+                                <a href="{{ route('movie', $item->id) }}" class="nav-link">
+                                    {{ $item->title_fa }}
+                                    @if ($item->title_en)
+                                        <small class="text-muted">({{ $item->title_en }})</small>
+                                    @endif
+                                </a>
+                            </h6>
+                        </div>
+
+                        <!-- نسخه‌ها -->
+                        <div class="movie-versions mb-3">
+
+                            @if ($item->has_subtitle)
+                                <span class="version version-subtitle">
+                                    <img src="/image/svgexport-10.svg" width="22">
+                                    زیرنویس فارسی
+                                </span>
+                            @endif
+
+                            @if ($item->has_dub)
+                                <span class="version version-dub">
+                                    <img src="/image/svgexport-9.svg" width="22">
+                                    دوبله فارسی
+                                </span>
+                            @endif
+
+                        </div>
+
+
+
+                        {{-- سال انتشار --}}
+                        @if (!empty($item->year))
+                            <p class="d-inline-block mb-2" style="font-size:12px;color:#717171;">
+                                <img class="me-1" src="/image/calendar-event.svg" width="16">
+                                <span class="me-1" style="font-size:14px;color:#212121;">سال انتشار :</span>
+                                {{ $item->year }}
+                            </p>
+                            <br>
+                        @endif
+
+                        {{-- امتیاز IMDB --}}
+                        @if (!empty($item->imdb_rate))
+                            <p class="d-inline-block mb-2" style="font-size:12px;color:#717171;">
+                                <img class="me-1" src="/image/clipboard-data.svg" width="16">
+                                <span class="me-1" style="font-size:14px;color:#212121;">IMDB امتیاز :</span>
+                                {{ $item->imdb_rate }}
+                            </p>
+                            <br>
+                        @endif
+
+                        {{-- ژانر --}}
+                        @if ($item->genres && $item->genres->count())
+                            <p class="d-inline-block mb-2" style="font-size:12px;color:#717171;">
+                                <img class="me-1" src="/image/masks-theater-solid.svg" width="16">
+                                <span class="me-1" style="font-size:14px;color:#212121;">ژانر :</span>
+
+                                @foreach ($item->genres as $genre)
+                                    <a href="{{ route('genre.show', $genre->id) }}" class="me-1 text-decoration-none"
+                                        style="color:#717171;font-size:13px;">
+                                        {{ $genre->title }}
+                                    </a>
+                                    @if (!$loop->last)
+                                        ،
+                                    @endif
+                                @endforeach
+                            </p>
+                            <br>
+                        @endif
+
+                        {{-- کشور --}}
+                        @if (!empty($item->country))
+                            <p class="d-inline-block mb-2" style="font-size:12px;color:#717171;">
+                                <img class="me-1" src="/image/geo-alt.svg" width="16">
+                                <span class="me-1" style="font-size:14px;color:#212121;">محصول :</span>
+                                {{ $item->country }}
+                            </p>
+                            <br>
+                        @endif
+
+                        {{-- کارگردان --}}
+                        @if (!empty($item->director))
+                            <p class="d-inline-block mb-2" style="font-size:12px;color:#717171;">
+                                <img class="me-1" src="/image/person-video.svg" width="16">
+                                <span class="me-1" style="font-size:14px;color:#212121;">کارگردان :</span>
+                                {{ $item->director }}
+                            </p>
+                            <br>
+                        @endif
+
+                        {{-- بازیگران --}}
+                        @if (!empty($item->actors))
+                            <p class="d-inline-block mb-2" style="font-size:12px;color:#717171;">
+                                <img class="me-1" src="/image/star.svg" width="16">
+                                <span class="me-1" style="font-size:14px;color:#212121;">ستارگان :</span>
+                                {{ $item->actors }}
+                            </p>
+                            <br>
+                        @endif
+
+                        {{-- مدت زمان --}}
+                        @if (!empty($item->duration))
+                            <p class="d-inline-block" style="font-size:12px;color:#717171;">
+                                <img class="me-1" src="/image/stopwatch.svg" width="16">
+                                <span class="me-1" style="font-size:14px;color:#212121;">مدت زمان :</span>
+                                {{ $item->duration }}
+                            </p>
+                        @endif
+
+                    </div>
+
+                    <!-- خلاصه داستان -->
+                    <div class="col-12 mt-3">
+                        <p style="font-size:12px;color:#212121;">
+                            <img class="me-1" src="/image/newspaper-regular.svg" width="20">
+                            {{ $item->summary }}
+                        </p>
+                    </div>
+
+                    <!-- پایین کارت -->
+                    <div
+                        class="col-12 d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center gap-3 mt-2">
+
+                        <div>
+                            <div class="d-flex align-items-center ">
+                                <span class="d-flex align-items-center me-2" style="font-size:10px;font-weight:700;">
+                                    <img class="me-1" src="/image/calendar-event.svg">
+                                    {{ $date = jdate($item->created_at) }}
+                                </span>
+                                <span class="d-flex align-items-center me-2" style="font-size:10px;font-weight:700;">
+                                    <img class="me-1"
+                                        src="/image/chat-left-dots.svg">{{ $item->comments->count() > 0 ? $item->comments->count() . ' دیدگاه' : 'بدون دیدگاه' }}
+                                </span>
+                            </div>
+
+
+                        </div>
+                        <div class="col-12 col-md-4">
+                            <div class="bg-primary py-2 px-4 rounded-4">
+                                <a class="text-white nav-link d-flex align-items-center justify-content-center"
+                                    style="font-size:12px;" href="{{ route('movie', $item->id) }}">
+
+                                    <span style="font-size: 14px; margin-left: 6px">ادامه و دانلود</span>
+
+                                    <img src="/image/download-01-svgrepo-com.svg" alt="" width="20"
+                                        height="20">
+                                </a>
+                            </div>
+
+                        </div>
+
+
+
+                    </div>
+
+                </div>
+            </article>
+        @empty
+            <div class="alert alert-danger text-center mt-4">
+                هیچ فیلمی برای نمایش وجود ندارد
+            </div>
+        @endforelse
+        <div class="mt-4">
+            {{ $movies->links() }}
+        </div>
+    </div>
+
+    <x-leftside />
+@endsection

@@ -1,0 +1,287 @@
+@font-face {
+    font-family: yekan;
+    src: url(../font/IRANYekanXFaNum-Medium.ttf);
+}
+
+/* متغیرهای رنگی برای مدیریت بهتر */
+:root {
+    --primary-dark: #0F2854;
+    --primary-medium: #1C4D8D;
+    --primary-light: #BDE8F5;
+    --accent-blue: #007bff;
+    --accent-dark: #0056b3;
+    --button-bg: #0159ac;
+    --button-hover: #194369;
+    --text-light: #ffffff;
+    --shadow: 0 4px 12px rgba(15, 40, 84, 0.15);
+    --transition: all 0.3s ease;
+}
+
+* {
+    font-family: yekan;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: var(--primary-light);
+    color: var(--primary-dark);
+    line-height: 1.6;
+}
+
+/* سایدبار */
+.sidebar {
+    min-height: 100vh;
+    background-color: var(--primary-dark);
+    padding: 1.5rem 1rem;
+    box-shadow: 5px 0 15px rgba(0, 0, 0, 0.1);
+    transition: var(--transition);
+}
+
+.sidebar a {
+    color: var(--text-light);
+    text-decoration: none;
+    padding: 0.75rem 1rem;
+    display: block;
+    width: 100%;
+    transition: var(--transition);
+    border-radius: 8px;
+    margin: 4px 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.sidebar a::before {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: 100%;
+    width: 0;
+    background-color: #007bff6c;
+    transition: width 0.3s ease;
+    z-index: -1;
+}
+
+.sidebar a:hover::before,
+.sidebar a.active::before {
+    background-color: #007bff;
+    width: 100%;
+    
+}
+
+.sidebar a:hover,
+.sidebar a.active {
+    color: var(--primary-dark);
+    font-weight: 500;
+}
+
+.sidebar a span {
+    position: relative;
+    z-index: 1;
+}
+
+/* تاپ‌بار */
+.topbar {
+    background-color: var(--primary-medium);
+    padding: 1.2rem 1.5rem;
+    color: var(--primary-dark);
+    box-shadow: var(--shadow);
+}
+
+.topbar h4 {
+    color: var(--text-light);
+    font-weight: 600;
+    margin: 0;
+}
+
+/* کارت‌ها */
+.card {
+    background-color: var(--primary-medium);
+    color: var(--text-light);
+    border: none;
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+    overflow: hidden;
+}
+
+.card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 16px rgba(15, 40, 84, 0.2);
+}
+
+.card-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+
+
+
+
+
+
+
+
+
+/* جداول */
+.color-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1rem 0;
+}
+
+.color-table th {
+    color: var(--primary-dark);
+    font-weight: 600;
+    text-align: right;
+    padding: 0.75rem;
+    border-bottom: 2px solid var(--primary-light);
+}
+
+.color-table td {
+    color: var(--text-muted);
+    padding: 0.75rem;
+    border-bottom: 1px solid rgba(189, 232, 245, 0.3);
+}
+
+.color-table tr:hover {
+    background-color: rgba(189, 232, 245, 0.1);
+}
+
+/* عناوین */
+h5 {
+    color: var(--primary-dark);
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+/* بهبود فرم‌ها */
+.form-control {
+    background-color: rgba(255, 255, 255, 0.9);
+    border: 1px solid rgba(189, 232, 245, 0.5);
+    border-radius: 6px;
+    padding: 0.6rem 0.9rem;
+    transition: var(--transition);
+}
+
+.form-control:focus {
+    border-color: var(--primary-light);
+    box-shadow: 0 0 0 0.2rem rgba(189, 232, 245, 0.25);
+    outline: none;
+}
+
+/* آیکون‌ها */
+.icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.1);
+    margin-left: 10px;
+    transition: var(--transition);
+}
+
+.icon:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    transform: scale(1.1);
+}
+
+/* ریسپانسیو */
+@media (max-width: 768px) {
+    .sidebar {
+        padding: 1rem 0.5rem;
+    }
+    
+    .sidebar a {
+        padding: 0.6rem 0.8rem;
+        font-size: 0.9rem;
+    }
+    
+    .topbar {
+        padding: 1rem;
+    }
+    
+    .card {
+        margin-bottom: 1rem;
+    }
+}
+
+.auth-wrapper {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+}
+
+.auth-box {
+    width: 100%;
+    max-width: 400px;
+    background: #0F2854;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 15px 40px rgba(0,0,0,.4);
+    color: #fff;
+}
+
+.auth-box h2 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+.form-group {
+    margin-bottom: 1rem;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 0.7rem;
+    border-radius: 8px;
+    border: none;
+    outline: none;
+}
+
+.btn-auth {
+    width: 100%;
+    background: #00c6ff;
+    border: none;
+    padding: 0.7rem;
+    border-radius: 8px;
+    font-weight: bold;
+    margin-top: 1rem;
+    cursor: pointer;
+}
+
+.btn-auth:hover {
+    background: #009ad6;
+}
+
+.auth-link {
+    text-align: center;
+    margin-top: 1rem;
+}
+
+.auth-link a {
+    color: #00c6ff;
+    text-decoration: none;
+}
+
+
+.blink-dot {
+    width: 8px;
+    height: 8px;
+    background: rgb(54, 123, 241);
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 6px; /* ← این رو به جای margin-left */
+    animation: blink 1s infinite; /* انیمیشن چشمک زن */
+}
+
+
+
