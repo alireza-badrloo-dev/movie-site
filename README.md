@@ -60,6 +60,7 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 
 ## صفحه اصلی
 این سایت نمونه پروژه وب من است که با HTML, CSS, Bootstrap, PHP و Laravel ساخته شده است
+
 ![صفحه اصلی](screenshot/home.png)
 ## License
 
