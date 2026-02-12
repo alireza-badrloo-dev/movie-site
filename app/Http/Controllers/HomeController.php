@@ -11,7 +11,7 @@ class HomeController extends Controller
 {
     public function index()
     {
-        $movies = Movie::with('genres')->orderBy('id', 'desc')->where('status' , 1)->paginate(10);
+        $movies = Movie::with('genres')->orderBy('id', 'desc')->where('status' , 1)->paginate(6);
         return view('index', compact('movies'));
     }
 
