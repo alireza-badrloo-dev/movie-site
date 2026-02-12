@@ -56,9 +56,10 @@ In order to ensure that the Laravel community is welcoming to all, please review
 ## Security Vulnerabilities
 
 If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-این سایت نمونه پروژه وب من است که با HTML, CSS, Bootstrap, PHP و Laravel ساخته شده است.
+.
 
 ## صفحه اصلی
+این سایت نمونه پروژه وب من است که با HTML, CSS, Bootstrap, PHP و Laravel ساخته شده است
 ![صفحه اصلی](screenshot/home.png)
 ## License
 
